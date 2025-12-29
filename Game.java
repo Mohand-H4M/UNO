@@ -12,16 +12,16 @@ public class Game {
 	        this.currentPlayerIndex = 0;
 	        this.direction = 1;
 	    }
-    public String getSens(){
-        return sens;
+    public int getDirection(){
+        return direction;
     }
 
-    public void sensSetter(String NewSens){
-        sens = NewSens;
+    public void setDirection(int direction){
+        this.direction = direction;
     }
 
-    public static void SkipNext(){
-
+    public void SkipNext(){
+		currentPlayerIndex++;
     }
 
 

@@ -9,8 +9,9 @@ public class DrawCard extends Card implements Effect{
 
     //on attend de faire game pour faire la logique
     @Override
-	public void applyEffect(Card card) {
-		Game.SkipNext();
+	public void applyEffect(Game game) {
+		game.SkipNext();
+        
 		
 	}
 

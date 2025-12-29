@@ -6,12 +6,15 @@ public class Block extends Card implements Effect {
     }
 
     @Override
-    public void applyEffect(Card card) {
-        Game.SkipNext();
+    public void applyEffect(Game game) {
+        game.SkipNext();
     }
 
     public boolean isPlayable(Card card) {
-        return this.getColor().equals(card.getColor());
+        if(card instanceof Block){
+        return true;
     }
+    else {return this.getColor().equals(card.getColor());}
 
+    }
 }

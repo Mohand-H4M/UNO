@@ -6,11 +6,12 @@ public class Reverse extends Card implements Effect{
 
 
 	@Override
-	public void applyEffect(Card card) {
-		if(Game.getSens().equals("ClockWise")){
-            Game.sensSetter("NotClockWise");
-        }else{
-            Game.sensSetter("ClockWise");
+	public void applyEffect(Game game) {
+		if(game.getDirection()==1){
+			game.setDirection(-1);
+		} else {
+			game.setDirection(1);
+         
         }
 	}
 
