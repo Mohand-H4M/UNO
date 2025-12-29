@@ -2,7 +2,7 @@ import java.util.ArrayList;
 public class Player {
 private String name;
 private ArrayList<Card> hand;
-public Player(String name, ArrayList<Card> hand, Deck deck) {
+public Player(String name, ArrayList<Card> hand) {
 	this.name=name;
 	this.hand= hand;
 }
@@ -21,9 +21,6 @@ public String getName() {
 public ArrayList<Card> getHand() {
 	return hand;
 }
-public void Draw(Deck deck) {
-	 Card x=deck.draw();
-	 hand.add(x);
-}
+
 
 }

@@ -17,7 +17,7 @@ public class Reverse extends Card implements Effect{
 
 	@Override
 	public boolean isPlayable(Card card) {
-		if(card instanceof Reverse || card.getColor()==getColor())
+		if(card instanceof Reverse || card.getColor().equals(this.getColor()))
 		return true;
 	
 		else return false;

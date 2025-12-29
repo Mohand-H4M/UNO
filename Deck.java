@@ -38,7 +38,7 @@ public class Deck {
 	    shuffle();
 	 
  }
- private void initializeDeck() {
+ public void initializeDeck() {
 	 cards.push(new NumberCard("red",0));
 	 for(int i=1;i<10;i++) {
 		 cards.push(new NumberCard("red",i));
@@ -59,6 +59,15 @@ public class Deck {
 		 cards.push(new NumberCard("yellow",i));
 		 cards.push(new NumberCard("yellow",i));
 	 }
-	
- }
+	 cards.push(new NumberCard("yellow",0));
+	 
+		 cards.push(new Reverse("red"));
+		 cards.push(new Block("red"));
+	     cards.push(new Reverse("blue"));
+		 cards.push(new Block("blue"));
+		 cards.push(new Reverse("green"));
+		 cards.push(new Block("green"));
+		 cards.push(new Reverse("yellow"));
+		 cards.push(new Block("yellow"));
+	}
 }

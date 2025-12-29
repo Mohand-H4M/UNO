@@ -10,9 +10,9 @@ public class DrawCard extends Card implements Effect{
     //on attend de faire game pour faire la logique
     @Override
 	public void applyEffect(Game game) {
-		game.SkipNext();
+		game.drawFour();
+        game.SkipNext();
         
-		
 	}
 
     //playable si seulment si ils ont la meme couleur
