@@ -5,7 +5,7 @@ public class Deck {
  private Stack<Card> cards;
  
  public Deck() {
-	 cards = new Stack<>();
+	 cards = new Stack<Card>();
 	 initializeDeck();
 	 shuffle();
 	

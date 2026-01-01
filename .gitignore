@@ -29,6 +29,9 @@ bin/
 ### Mac OS ###
 .DS_Store
 
-*.class
+
 bin/
 out/
+*.class
+!/.project
+!/.classpath
