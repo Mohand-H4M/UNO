@@ -13,8 +13,8 @@ public class Main {
             String name = Sc.next();
             players.add(new Player(name, deck));
            }
-           Game game = new Game(players, deck);
-        
+        Game game = new Game(players, deck);
+        game.play();
         Sc.close(); 
 
     }

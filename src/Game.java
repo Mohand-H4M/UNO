@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Game {
 
@@ -6,6 +7,7 @@ public class Game {
 	private Deck deck;
 	private int currentPlayerIndex;
 	private int direction; // 1 = forward, -1 = reverse
+	private Stack<Card> discardPile;
 
 	public Game(ArrayList<Player> players, Deck deck) {
 		this.players = players;
@@ -49,6 +51,29 @@ public class Game {
 
 	public Deck getDeck() {
 		return deck;
+	}
+
+	public boolean gameOver() {
+		return players.get(currentPlayerIndex).getHand().isEmpty();
+	}
+    public void nextPlayer() {
+        currentPlayerIndex = (currentPlayerIndex + direction + players.size()) % players.size();
+    }
+
+	public void UnoRule() {
+		if (players.get(currentPlayerIndex).getHand().size() == 1) {
+			System.out.println(players.get(currentPlayerIndex).getName() + " said Uno!");
+		}
+	}
+	public void play() {
+		discardPile.push(deck.draw());
+		while (!gameOver()) {
+			System.out.println("Current player: " + players.get(currentPlayerIndex).getName());
+			System.out.println("Current card: " + discardPile.peek());
+			System.out.println("Your hand: " + players.get(currentPlayerIndex).getHand());
+			
+			
+		}
 	}
 
 }
