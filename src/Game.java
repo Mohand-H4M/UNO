@@ -71,9 +71,19 @@ public class Game {
 
 	public void UnoRule() {
 		if (players.get(currentPlayerIndex).getHand().size() == 1) {
-			System.out.println(players.get(currentPlayerIndex).getName() + " said Uno!");
+			Scanner sc = new Scanner(System.in);
+			String s;
+			System.out.println("Do you want to say Uno? (y/n)");
+			s = sc.nextLine();
+			if (s.equals("y")) {
+				System.out.println(players.get(currentPlayerIndex).getName() + " said Uno!");
+			}else{
+				players.get(currentPlayerIndex).drawCard(deck);
+				System.out.println(players.get(currentPlayerIndex).getName() + "didn't say UNO and drew a card!");
+			}sc.close();
+			}
 		}
-	}
+	
 	public void play() {
 		discardPile = new Stack<Card>(); // Initialize discardPile
 		discardPile.push(deck.draw());
