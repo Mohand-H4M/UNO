@@ -9,9 +9,9 @@ public class Game {
 	private int currentPlayerIndex;
 	private int direction; // 1 = forward, -1 = reverse
 	private Stack<Card> discardPile;
-
+    private Scanner sc;
 	public Game(ArrayList<Player> players, Deck deck) {
-		
+		sc = new Scanner(System.in);
 		this.players = players;
 		deck.initializeDeck();
 		deck.shuffle();
@@ -50,7 +50,16 @@ public class Game {
 			players.get(nextIndex).drawCard(deck);
 		}
 	}
-
+    public String changeColor() {
+        System.out.println("Choose color (RED, BLUE, GREEN, YELLOW):");
+        String color = sc.next().toUpperCase();
+        while(!color.equals("RED") && !color.equals("BLUE") && !color.equals("GREEN") && !color.equals("YELLOW")){
+            System.out.println("Invalid color. Try again:");
+            color = sc.next().toUpperCase();
+        }
+        return color;
+        
+    }
 	public void drawFour() {
         int nextIndex = (currentPlayerIndex + direction + players.size()) % players.size();
         for (int i=0;i<4;i++) {
@@ -71,7 +80,6 @@ public class Game {
 
 	public void UnoRule() {
 		if (players.get(currentPlayerIndex).getHand().size() == 1) {
-			Scanner sc = new Scanner(System.in);
 			String s;
 			System.out.println("Do you want to say Uno? (y/n)");
 			s = sc.nextLine();
@@ -80,7 +88,7 @@ public class Game {
 			}else{
 				players.get(currentPlayerIndex).drawCard(deck);
 				System.out.println(players.get(currentPlayerIndex).getName() + "didn't say UNO and drew a card!");
-			}sc.close();
+			}
 			}
 		}
 	
