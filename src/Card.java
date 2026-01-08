@@ -16,5 +16,5 @@ public abstract class Card {
     public Card(String NewColor){
         this.Color = NewColor.toUpperCase();
     }
-
+    
 }

@@ -1,4 +1,3 @@
-
 public class DrawCard extends Card implements Effect{
 
     //creation de la couleur
@@ -10,17 +9,17 @@ public class DrawCard extends Card implements Effect{
     //on attend de faire game pour faire la logique
     @Override
 	public void applyEffect(Game game) {
-		game.drawFour();
-        game.SkipNext();
+		game.drawTwo();
+        game.skipNext();
         
 	}
 
     //playable si seulment si ils ont la meme couleur
     public boolean isPlayable(Card card){
         if(card instanceof DrawCard){
-            return this.getColor().equals(card.getColor());
+            return true; 
         }else{
-            return false;
+            return this.getColor().equals(card.getColor());
         }
     }
 

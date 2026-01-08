@@ -7,12 +7,7 @@ public class Reverse extends Card implements Effect{
 
 	@Override
 	public void applyEffect(Game game) {
-		if(game.getDirection()==1){
-			game.setDirection(-1);
-		} else {
-			game.setDirection(1);
-         
-        }
+		game.reverseDirection();
 	}
 
 	@Override

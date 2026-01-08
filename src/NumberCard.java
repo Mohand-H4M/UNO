@@ -21,7 +21,7 @@ public class NumberCard extends Card {
     public boolean isPlayable(Card card) {
         if(card instanceof NumberCard) {
             NumberCard NCard =  (NumberCard) card;
-            return (this.getColor().equals(getColor()) || this.getNumber() == NCard.getNumber());
+            return (this.getColor().equals(card.getColor()) || this.getNumber() == NCard.getNumber());
         }else{
             return this.getColor().equals(card.getColor());
         }
