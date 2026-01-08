@@ -81,12 +81,20 @@ public class Game {
 		while (!gameOver()) {
 			System.out.println("--------------------------------");
 			System.out.println("Current player: " + players.get(currentPlayerIndex).getName());
-			System.out.println("Top Card: " + discardPile.peek().getColor() + " " + discardPile.peek().getClass().getSimpleName());
+			if (discardPile.peek() instanceof NumberCard) {
+				System.out.println("Top Card: " + discardPile.peek().getColor() + " " + ((NumberCard) discardPile.peek()).getNumber()); //down casting
+				}else{
+					System.out.println("Top Card: " + discardPile.peek().getColor() + " " + discardPile.peek().getClass().getSimpleName());
+				}
 			
 			// Show hand with indices
 			ArrayList<Card> hand = players.get(currentPlayerIndex).getHand();
 			for (int i = 0; i < hand.size(); i++) {
-				System.out.println(i + ": " + hand.get(i).getColor() + " " + hand.get(i).getClass().getSimpleName());
+				if (hand.get(i) instanceof NumberCard) {
+					System.out.println(i + ": " + hand.get(i).getColor() + " " + ((NumberCard) hand.get(i)).getNumber()); //down casting
+				}else{
+					System.out.println(i + ": " + hand.get(i).getColor() + " " + hand.get(i).getClass().getSimpleName());
+				}
 			}
 
 			System.out.println("Choose your card index or type -1 to draw:");
