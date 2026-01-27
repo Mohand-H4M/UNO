@@ -5,7 +5,6 @@ public class DrawCard extends Card implements Effect{
         super(color);
     }
 
-
     //on attend de faire game pour faire la logique
     @Override
 	public void applyEffect(Game game) {
@@ -22,7 +21,5 @@ public class DrawCard extends Card implements Effect{
             return this.getColor().equals(card.getColor());
         }
     }
-
-
 	
 }

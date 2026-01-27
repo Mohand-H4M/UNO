@@ -3,7 +3,7 @@
 public class NumberCard extends Card {
 
     //the number of the number card
-    int number;
+    private final int number;
 
     //getter of the number
     public int getNumber() {
@@ -16,7 +16,7 @@ public class NumberCard extends Card {
         this.number = number;
     }
 
-    //check if this card is playable in the dispatch
+    //redefinir la methode abstraite de la classe Card
     @Override
     public boolean isPlayable(Card card) {
         if(card instanceof NumberCard) {
