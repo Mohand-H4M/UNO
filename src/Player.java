@@ -36,9 +36,18 @@ public ArrayList<Card> getHand() {
 }
 
 //methode pour piocher une carte
-public void drawCard(Deck deck) {
-	Card x=deck.draw();
-	hand.add(x);
+public void drawCard(Game game) {
+    if (game.getDeck().isEmpty()) {
+        // Verifier quil y a assez de cartes dans la discardPile on reffill le deck
+        if (game.getDiscardPile().size() > 1) {
+            game.getDeck().refill(game.getDiscardPile());
+            System.out.println("Deck empty Reshuffling discard pile into deck");
+        } 
+    }
+    
+    // Piocher normalement
+    Card x = game.getDeck().draw();
+    hand.add(x);
 }
 
 

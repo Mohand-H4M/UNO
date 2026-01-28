@@ -56,7 +56,7 @@ public class BotPlayer extends Player {
         System.out.println(getName() + " (Bot) draws a card.");
         //heritage de la classe Player
         //ca ajoute une carte a la main du bot
-        drawCard(game.getDeck());
+        drawCard(game);
         return null;
     }
 

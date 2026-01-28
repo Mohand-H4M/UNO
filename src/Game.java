@@ -59,7 +59,7 @@ public class Game {
 		//calcule de lindice et lutilsation du modulo et lajout  de player.size pour gerer le cas ou on depasse la taille de la liste
 		int nextIndex = (currentPlayerIndex + direction + players.size()) % players.size();
 		for(int i=0;i<2;i++) {
-			players.get(nextIndex).drawCard(deck);
+			players.get(nextIndex).drawCard(this);
 		}
 	}
     
@@ -86,7 +86,7 @@ public class Game {
 	public void drawFour() {
         int nextIndex = (currentPlayerIndex + direction + players.size()) % players.size();
         for (int i=0;i<4;i++) {
-            players.get(nextIndex).drawCard(deck);
+            players.get(nextIndex).drawCard(this);
         }
 	}
 
@@ -128,7 +128,7 @@ public class Game {
 				if (s.equals("y")) {
 					System.out.println(currentPlayer.getName() + " said Uno!");
 				} else {
-					currentPlayer.drawCard(deck);
+					currentPlayer.drawCard(this);
 					System.out.println(currentPlayer.getName() + " didn't say UNO and drew a card!");
 				}
 			}
@@ -182,7 +182,7 @@ public class Game {
 				int cardIndex = sc.nextInt();
 
 				if (cardIndex == -1) {
-					players.get(currentPlayerIndex).drawCard(deck);
+					players.get(currentPlayerIndex).drawCard(this);
 					System.out.println("Card drawn.");
 					nextPlayer();
 				} else if (cardIndex >= 0 && cardIndex < hand.size()) {
