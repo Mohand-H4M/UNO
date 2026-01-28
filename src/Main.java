@@ -7,6 +7,12 @@ public static void main(String[] args) {
     Scanner Sc = new Scanner(System.in);
     
     int numberOfPlayers = Sc.nextInt();
+    //verification du nombre de joueur
+    while (numberOfPlayers < 2 || numberOfPlayers > 4) {
+        System.out.println("Invalid number of players! Please enter a number between 2 and 4:");
+        numberOfPlayers = Sc.nextInt();
+    }
+
     ArrayList<Player> players = new ArrayList<Player>();
     
     Deck deck = new Deck();

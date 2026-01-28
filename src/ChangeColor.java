@@ -5,7 +5,7 @@ public class ChangeColor extends Card implements Effect{
     @Override
     public void applyEffect(Game game){
         this.setColor(game.changeColor());
-        
+        game.nextPlayer();
     }
 
     //redefinir la methode abstraite de la classe Card

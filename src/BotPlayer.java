@@ -5,7 +5,7 @@ public class BotPlayer extends Player {
     }
 
 
-    // Le bot choisit la couleur la plus fréquente dans sa main
+    // Le bot choisit la couleur la plus frequente dans sa main
     public String chooseColor() {
         int redCount = 0, blueCount = 0, greenCount = 0, yellowCount = 0;
         
@@ -37,16 +37,16 @@ public class BotPlayer extends Player {
         //Jouer une carte de la couleur la plus frequente
         for (int i = 0; i < getHand().size(); i++) {
             Card card = getHand().get(i);
-            if (game.isValidMove(card) && card.getColor().equals(mostFrequentColor)) {
+            if (card.isPlayable(game.getDiscardPile().peek()) && card.getColor().equals(mostFrequentColor)) {
                 System.out.println(getName() + " (Bot) plays: " + getCardDescription(card));
                 return getHand().remove(i);//la carte est retiree et jouer
             }
         }
-        
+    
         //Si aucune carte de cette couleur nest jouable il joue la premiere carte valide 
         for (int i = 0; i < getHand().size(); i++) {
             Card card = getHand().get(i);
-            if (game.isValidMove(card)) {
+            if (card.isPlayable(game.getDiscardPile().peek())) {
                 System.out.println(getName() + " (Bot) plays: " + getCardDescription(card));
                 return getHand().remove(i);
             }

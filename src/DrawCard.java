@@ -9,8 +9,7 @@ public class DrawCard extends Card implements Effect{
     @Override
 	public void applyEffect(Game game) {
 		game.drawTwo();
-        game.skipNext();
-        
+        game.nextPlayer();
 	}
 
     //playable si seulment si ils ont la meme couleur

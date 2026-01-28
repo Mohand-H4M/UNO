@@ -7,8 +7,7 @@ public class DrawFour extends Card implements Effect {
     public void applyEffect(Game game){
         this.setColor(game.changeColor());
         game.drawFour();
-        game.skipNext();
-        
+        game.nextPlayer();
     }
 
     //redefinir la methode abstraite de la classe Card

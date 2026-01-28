@@ -42,7 +42,10 @@ public class Game {
 
 	// Methode pour reverse la direction du jeu
 	public void reverseDirection() {
-		this.direction = -this.direction;
+			this.direction = -this.direction;
+			if (!(players.size() ==2)){
+				nextPlayer();
+			}
 	}
 
 	// Methode pour skip le prochain joueur
@@ -53,6 +56,7 @@ public class Game {
 
 	// Methode pour faire piocher deux cartes au prochain joueur
 	public void drawTwo() {
+		//calcule de lindice et lutilsation du modulo et lajout  de player.size pour gerer le cas ou on depasse la taille de la liste
 		int nextIndex = (currentPlayerIndex + direction + players.size()) % players.size();
 		for(int i=0;i<2;i++) {
 			players.get(nextIndex).drawCard(deck);
@@ -90,17 +94,9 @@ public class Game {
 		return deck;
 	}
 
-	// Getter pour discardPile (nécessaire pour BotPlayer)
+	// Getter pour discardPile 
 	public Stack<Card> getDiscardPile() {
 		return discardPile;
-	}
-
-	// Methode pour vérifier si une carte est jouable (pour BotPlayer)
-	public boolean isValidMove(Card card) {
-		if (discardPile.isEmpty()) {
-			return true;
-		}
-		return card.isPlayable(discardPile.peek());
 	}
 
 	//le jeu est termine si un joueur na plus de carte
@@ -120,10 +116,15 @@ public class Game {
 			if (currentPlayer instanceof BotPlayer) {
 				System.out.println(currentPlayer.getName() + " (Bot) said UNO!");
 			} else {
-				// Joueur humain demander
 				String s;
+				// Joueur humain demander
 				System.out.println("Do you want to say Uno? (y/n)");
-				s = sc.next();
+				s = sc.next().toLowerCase();  // Accepte Y/y et N/n
+				while (!s.equals("y") && !s.equals("n")) {
+					System.out.println("Invalid input! Please enter 'y' or 'n':");
+					s = sc.next().toLowerCase();
+				}
+				
 				if (s.equals("y")) {
 					System.out.println(currentPlayer.getName() + " said Uno!");
 				} else {
@@ -150,21 +151,21 @@ public class Game {
 			// Verifier si le joueur actuel est un Bot
 			if (players.get(currentPlayerIndex) instanceof BotPlayer) {
 				BotPlayer bot = (BotPlayer) players.get(currentPlayerIndex);
+				//on donne la classe game actuel pour le bot
 				Card playedCard = bot.playAutomatically(this);
 				
 				if (playedCard != null) {
 					discardPile.push(playedCard);
-					if (playedCard instanceof Effect) {
-						((Effect) playedCard).applyEffect(this);
-					}
+
 					//verifier pour dire uno
 					UnoRule();
-					
-					if (!(playedCard instanceof Skip)) {
-						if (!gameOver()) {
-							nextPlayer();
-						}
-					}
+
+					if (playedCard instanceof Effect) {
+						//avec downCasting
+						((Effect) playedCard).applyEffect(this);
+					}else{
+						nextPlayer();
+					}	
 				}
 			} else {
 				// Joueur humain
@@ -183,23 +184,27 @@ public class Game {
 				if (cardIndex == -1) {
 					players.get(currentPlayerIndex).drawCard(deck);
 					System.out.println("Card drawn.");
+					nextPlayer();
 				} else if (cardIndex >= 0 && cardIndex < hand.size()) {
 					Card selectedCard = hand.get(cardIndex);
 					if (selectedCard.isPlayable(discardPile.peek())) {
 						hand.remove(cardIndex);
 						discardPile.push(selectedCard);
 						
+						//verifier pour dire uno
+						UnoRule();
+
+						// Appliquer leffet si la carte en a un
 						if (selectedCard instanceof Effect) {
 							((Effect) selectedCard).applyEffect(this);
+						}else {
+							// Passer au joueur suivant si la carte jouee nest pas un effet de saut
+							nextPlayer();
 						}
 						
-						UnoRule();
 						
-						if (!(selectedCard instanceof Skip)) {
-							if (!gameOver()) {
-								nextPlayer();
-							}
-						}
+
+
 					} else {
 						System.out.println("Invalid move! Card not playable.");
 						continue; // Try again without changing player

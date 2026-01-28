@@ -49,6 +49,7 @@ public class Deck {
 
  public void initializeDeck() {
 	 //we push one card of number 0 and 2 of each number
+	 cards.push(new NumberCard("RED",0));
 	 for(int i=1;i<10;i++) {
 		 cards.push(new NumberCard("RED",i));
 		 cards.push(new NumberCard("RED",i));
