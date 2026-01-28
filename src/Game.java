@@ -166,6 +166,8 @@ public class Game {
 					}else{
 						nextPlayer();
 					}	
+				}else{
+					nextPlayer();
 				}
 			} else {
 				// Joueur humain
